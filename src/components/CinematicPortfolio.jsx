@@ -1,11 +1,12 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion as Motion, useInView, useScroll, useSpring, useTransform } from 'framer-motion'
-import { ArrowDown, ArrowUp, ArrowUpRight, Plus } from 'lucide-react'
+import { ArrowDown, ArrowUp, ArrowUpRight, Pause, Play, Plus } from 'lucide-react'
 import { profile, philosophy, industries, scenes } from '../data/portfolioData'
 import { cinematicAsset } from '../cinematicAssets'
 import { useParallaxLayer, usePointerMotion, usePointerEnabled, useReducedMotion } from '../motion/hooks'
 import { ease } from '../motion/settings'
 import SocialLinks from './SocialLinks'
+import CinematicAtmosphere from './CinematicAtmosphere'
 import { AnimatedCapability, AnimatedChapter, AnimatedTimeline, CinemaHeading, CinemaQuote, ConnectLink, MagneticLink } from './CinemaMotion'
 
 const indexLabel = index => String(index + 1).padStart(2, '0')
@@ -41,6 +42,7 @@ function FilmScene({ scene, className = '' }) {
 
 function Hero() {
   const ref = useRef(null)
+  const [ambiencePaused, setAmbiencePaused] = useState(false)
   const reduced = useReducedMotion()
   const enabled = usePointerEnabled()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
@@ -53,6 +55,7 @@ function Hero() {
   const photo = cinematicAsset(profile.photo)
   return <section ref={ref} id="home" tabIndex={-1} className="cinema-hero" data-active={active} aria-labelledby="hero-title" {...pointer.handlers}>
     <Motion.div className="cinema-hero-light" aria-hidden="true" style={glowPointer} initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: reduced ? 0 : 2, ease }} />
+    <CinematicAtmosphere paused={ambiencePaused} />
     <div className="cinema-hero-gridlines" aria-hidden="true" />
     {!reduced && <div className="cinema-hero-aperture" aria-hidden="true"><Motion.div className="cinema-hero-shutter cinema-hero-shutter--top" initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 1.25, delay: .1, ease }} /><Motion.div className="cinema-hero-shutter cinema-hero-shutter--bottom" initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 1.25, delay: .1, ease }} /></div>}
     <div className="cinema-wrap cinema-hero-layout">
@@ -70,7 +73,7 @@ function Hero() {
         <span className="cinema-portrait-side" aria-hidden="true">{profile.copy.heroCredit[0]} / {profile.copy.heroCredit[1]}</span><span className="cinema-portrait-reel" aria-hidden="true">I</span>
       </Motion.figure>
     </div>
-    <div className="cinema-wrap cinema-hero-bottom"><a href="#about" className="cinema-scroll"><ArrowDown size={17} aria-hidden="true" /><span>SCROLL TO EXPLORE</span></a><p>{profile.location}</p><span className="cinema-hero-study">LEGAL STUDIES / IN PROGRESS</span></div>
+    <div className="cinema-wrap cinema-hero-bottom"><a href="#about" className="cinema-scroll"><ArrowDown size={17} aria-hidden="true" /><span>SCROLL TO EXPLORE</span></a><p>{profile.location}</p>{!reduced && <button type="button" className="cinema-ambience-toggle" onClick={() => setAmbiencePaused(value => !value)} aria-label={ambiencePaused ? 'Resume background animation' : 'Pause background animation'}>{ambiencePaused ? <Play size={12} aria-hidden="true" /> : <Pause size={12} aria-hidden="true" />}<span>{ambiencePaused ? 'RESUME AMBIENCE' : 'PAUSE AMBIENCE'}</span></button>}<span className="cinema-hero-study">LEGAL STUDIES / IN PROGRESS</span></div>
   </section>
 }
 

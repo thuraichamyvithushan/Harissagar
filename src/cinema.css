@@ -100,7 +100,7 @@ svg { flex-shrink: 0; }
 .cinema-hero-shutter { position: absolute; left: 0; right: 0; height: 50%; background: #0e1110; }
 .cinema-hero-shutter--top { top: 0; transform-origin: top; border-bottom: 1px solid #cda87930; }
 .cinema-hero-shutter--bottom { bottom: 0; transform-origin: bottom; border-top: 1px solid #cda87930; }
-.cinema-hero-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; align-items: center; position: relative; padding-block: 20px 44px; flex-grow: 1; }
+.cinema-hero-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; align-items: center; position: relative; z-index: 1; padding-block: 20px 44px; flex-grow: 1; }
 .cinema-hero-frame-number { position: absolute; z-index: -1; left: -35px; top: 4%; font: 500 clamp(200px, 29vw, 430px)/1 'Sora Variable', sans-serif; color: transparent; -webkit-text-stroke: 1px #eee9df08; letter-spacing: -.09em; pointer-events: none; }
 .cinema-hero-copy { position: relative; z-index: 2; }
 .cinema-hero-copy > .cinema-overline { color: var(--accent); margin-bottom: 24px; }
@@ -140,6 +140,20 @@ svg { flex-shrink: 0; }
 .cinema-scroll { display: inline-flex; align-items: center; gap: 18px; color: var(--text-primary); font-size: 8px; letter-spacing: .12em; }
 .cinema-scroll svg { color: var(--accent); }
 .cinema-hero-study { font-size: 7px; letter-spacing: .12em; }
+/* Atmospheric motion uses only transforms and opacity, behind the hero copy. */
+.cinema-atmosphere { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; contain: layout paint; }
+.cinema-atmosphere-haze { position: absolute; width: 80%; height: 110%; border-radius: 50%; animation: cinema-haze-drift 22s ease-in-out infinite alternate; }
+.cinema-atmosphere-haze--warm { right: -25%; top: -25%; background: radial-gradient(ellipse, #cda87938, #cda8790c 40%, transparent 68%); }
+.cinema-atmosphere-haze--olive { left: -36%; bottom: -48%; background: radial-gradient(ellipse, #8f9a6433, #8f9a640a 40%, transparent 68%); animation-duration: 28s; animation-delay: -11s; animation-direction: alternate-reverse; }
+.cinema-atmosphere-ray { position: absolute; width: 54%; height: 140%; left: 32%; top: -35%; background: linear-gradient(90deg, transparent, #dfc7a70b 35%, #dfc7a722 48%, #dfc7a706 58%, transparent 73%); transform-origin: 80% 0; animation: cinema-projector-drift 26s ease-in-out infinite alternate; }
+.cinema-atmosphere-dust { position: absolute; inset: 0; mask-image: linear-gradient(90deg, #000 0, #000 40%, transparent 70%); }
+.cinema-atmosphere-dust > i { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #dfc7a7; box-shadow: 0 0 5px #cda87955; opacity: 0; animation: cinema-dust-drift var(--drift-duration) linear var(--drift-delay) infinite; }
+.cinema-atmosphere[data-moving='false'] *, .cinema-hero[data-active='false'] .cinema-atmosphere * { animation-play-state: paused; }
+.cinema-ambience-toggle { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #eee9df20; padding: 10px 12px; background: #12151455; color: var(--text-secondary); font-size: 7px; letter-spacing: .1em; transition: border-color .25s, color .25s; }
+.cinema-ambience-toggle:hover { color: var(--accent-light); border-color: #cda87970; }
+@keyframes cinema-haze-drift { from { transform: translate3d(-3%, 2%, 0) scale(.95); opacity: .55; } to { transform: translate3d(9%, -7%, 0) scale(1.14); opacity: 1; } }
+@keyframes cinema-projector-drift { from { transform: rotate(-23deg) translate3d(-5%, 0, 0); opacity: .35; } to { transform: rotate(-8deg) translate3d(8%, 0, 0); opacity: .8; } }
+@keyframes cinema-dust-drift { 0% { transform: translate3d(0, 32px, 0); opacity: 0; } 25% { opacity: .45; } 75% { opacity: .28; } 100% { transform: translate3d(24px, -110px, 0); opacity: 0; } }
 /* An editorial paper chapter offers light and space between darker scenes. */
 .cinema-about { padding-block: 112px 124px; }
 .cinema-about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
@@ -397,6 +411,11 @@ svg { flex-shrink: 0; }
   .cinema-capability-button > .cinema-overline { width: 17px; }
   .cinema-disclosure > p { padding-left: 34px; padding-right: 15px; }
   .cinema-scroll > svg { animation: none; }
+  .cinema-atmosphere-haze { animation-duration: 30s; }
+  .cinema-atmosphere-ray, .cinema-atmosphere-dust > i:nth-child(n+5) { display: none; }
+  .cinema-hero-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .cinema-hero-bottom > p { grid-column: 2; justify-self: end; }
+  .cinema-ambience-toggle { width: fit-content; grid-column: 1 / -1; padding: 10px 12px; }
 }
 @media (hover:none) { .cinema-capability-button:hover .cinema-capability-name, .cinema-philosophy article:hover { transform: none; } }
 @media (prefers-reduced-motion:reduce) {
@@ -405,4 +424,6 @@ svg { flex-shrink: 0; }
   .cinema-portrait-sweep, .cinema-hero-aperture { display: none; }
   .cinema-capability-button:hover .cinema-capability-name, .cinema-social-links a:hover svg, .cinema-social-links a:focus-visible svg, .cinema-philosophy article:hover { transform: none; }
   .cinema-education-entry::after { display: none; }
+  .cinema-atmosphere-haze { animation: none; transform: none; opacity: .55; }
+  .cinema-atmosphere-ray, .cinema-atmosphere-dust, .cinema-ambience-toggle { display: none; }
 }
