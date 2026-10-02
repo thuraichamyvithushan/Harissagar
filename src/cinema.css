@@ -78,22 +78,30 @@ svg { flex-shrink: 0; }
 .menu-toggle, .menu-close { display: none; background: none; border: 0; padding: 10px; }
 .menu-glyph { display: block; width: 25px; height: 25px; position: relative; }
 .menu-glyph > span { position: absolute; width: 23px; height: 1px; background: currentColor; top: 12px; left: 1px; }
-.mobile-menu { margin: 0; padding: 30px; width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--background); color: var(--text-primary); border: 0; isolation: isolate; overflow-y: auto; }
+.mobile-menu { margin: 0; padding: clamp(20px, 4vw, 36px); width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--background); color: var(--text-primary); border: 0; isolation: isolate; overflow-y: auto; }
 .mobile-menu[open] { display: flex; flex-direction: column; }
 .mobile-menu::backdrop { background: var(--background); }
-.mobile-menu-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7vh; }
+.mobile-menu-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: clamp(24px, 5vh, 42px); }
 .mobile-menu .eyebrow { font-size: 12px; }
 .mobile-menu-top small { display: block; font-size: 8px; color: var(--accent); margin-top: 8px; }
 .menu-close { display: inline-flex; }
-.mobile-menu nav { display: grid; }
-.mobile-menu nav a { display: flex; align-items: center; gap: 22px; font-size: clamp(25px, 5vw, 44px); letter-spacing: -.035em; padding-block: 15px; border-bottom: 1px solid var(--border); }
-.mobile-menu nav a > span { font-size: 9px; color: var(--accent); letter-spacing: .06em; }
-.mobile-menu nav svg { width: 20px; margin-left: auto; }
+.mobile-menu > nav { display: grid; }
+.mobile-menu > nav a { display: flex; align-items: center; gap: 16px; min-height: 44px; font-size: clamp(20px, 3.2vw, 28px); line-height: 1.35; letter-spacing: -.025em; padding-block: 13px; border-bottom: 1px solid var(--border); transition: color .25s; }
+.mobile-menu > nav a:hover, .mobile-menu > nav a:focus-visible { color: var(--accent-light); }
+.mobile-menu > nav a > span { width: 20px; flex-shrink: 0; font-size: 8px; color: var(--accent); letter-spacing: .06em; }
+.mobile-menu > nav svg { width: 16px; height: 16px; margin-left: auto; }
 .mobile-linkedin { margin-top: auto; padding-top: 28px; display: flex; justify-content: space-between; font-size: 12px; color: var(--accent-light); }
 .mobile-menu > p { font-size: 11px; line-height: 1.8; color: var(--text-secondary); margin-top: 18px; }
 .mobile-menu .cinematic-scene { position: absolute; inset: 0; opacity: .16; z-index: -1; pointer-events: none; overflow: hidden; }
 .mobile-menu .scene-camera { position: absolute; inset: -30px; }
 .mobile-menu .scene-camera picture, .mobile-menu .scene-camera img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 1023px) and (max-height: 620px) {
+  .mobile-menu { padding: 20px; }
+  .mobile-menu-top { margin-bottom: 20px; }
+  .mobile-menu > nav a { font-size: 19px; padding-block: 9px; }
+  .mobile-menu .cinema-mobile-socials { padding-top: 20px; }
+  .mobile-menu > p { margin-top: 12px; font-size: 10px; }
+}
 /* Opening portrait: a film poster with layered type and a retained original photo. */
 .cinema-hero { position: relative; min-height: max(820px, 100svh); display: flex; flex-direction: column; padding-top: 120px; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 85% 40%, #383a30, #191d18 42%, #121514 72%); }
 .cinema-hero-light { position: absolute; z-index: -1; width: 70%; height: 90%; right: -12%; top: -13%; pointer-events: none; background: radial-gradient(ellipse, #cda87922, transparent 65%); }
