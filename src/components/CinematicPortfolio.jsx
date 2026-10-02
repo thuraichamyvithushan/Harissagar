@@ -50,6 +50,9 @@ function Hero() {
   const portraitScale = useTransform(scrollYProgress, [0, 1], [1, 1.08])
   const pointer = usePointerMotion()
   const portraitPointer = useParallaxLayer(pointer, 6, 4)
+  const framePointer = useParallaxLayer(pointer, -10, -6)
+  const tiltX = useTransform(pointer.y, [-1, 1], [1.5, -1.5])
+  const tiltY = useTransform(pointer.x, [-1, 1], [-1.5, 1.5])
   const glowPointer = useParallaxLayer(pointer, -14, -8)
   const active = useInView(ref)
   const photo = cinematicAsset(profile.photo)
@@ -65,13 +68,19 @@ function Hero() {
         <h1 id="hero-title" aria-label={profile.name}>{profile.name.split(' ').map((word, index) => <span className="cinema-name-mask" key={word}><Motion.span initial={reduced ? false : { y: '110%', filter: 'blur(6px)' }} animate={{ y: 0, filter: 'blur(0px)' }} transition={{ duration: reduced ? 0 : 1.2, delay: reduced ? 0 : .5 + index * .16, ease }}>{word}<i aria-hidden="true">{index === 1 ? '.' : ''}</i></Motion.span></span>)}</h1>
         <Motion.div className="cinema-hero-intro" initial={reduced ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduced ? 0 : .85, delay: reduced ? 0 : 1, ease }}><div className="cinema-hero-position"><p className="cinema-hero-role">{profile.role}</p><p className="cinema-hero-company">{profile.company}</p></div><p className="cinema-hero-statement">{profile.intro}</p><div className="cinema-hero-actions"><Link href="#experience" className="cinema-hero-primary">Explore my experience</Link><a className="cinema-hero-profile" href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="View Haris’s LinkedIn profile"><ArrowUpRight size={22} aria-hidden="true" /><span>LinkedIn profile</span></a></div></Motion.div>
       </div>
-      <Motion.figure className="cinema-portrait" initial={reduced ? false : { clipPath: 'inset(0 18% 0 18%)', opacity: 0 }} animate={{ clipPath: 'inset(0 0 0 0)', opacity: 1 }} transition={{ duration: reduced ? 0 : 1.6, delay: reduced ? 0 : .3, ease }}>
+      <Motion.div className="cinema-portrait-stage" style={{ rotateX: enabled ? tiltX : 0, rotateY: enabled ? tiltY : 0, transformPerspective: 1200 }}>
+        <Motion.div className="cinema-portrait-backplane" aria-hidden="true" style={framePointer} />
+        <div className="cinema-portrait-edge" aria-hidden="true" />
+        <span className="cinema-portrait-ghost" aria-hidden="true">{profile.name.split(' ').slice(-1)[0]}</span>
+        <Motion.figure className="cinema-portrait" initial={reduced ? false : { clipPath: 'inset(0 18% 0 18%)', opacity: 0 }} animate={{ clipPath: 'inset(0 0 0 0)', opacity: 1 }} transition={{ duration: reduced ? 0 : 1.6, delay: reduced ? 0 : .3, ease }}>
         <Motion.div className="cinema-portrait-image" style={{ y: enabled ? portraitY : 0, scale: enabled ? portraitScale : 1 }}>{photo ? <Motion.img src={photo} alt={profile.photoAlt} width="715" height="715" fetchPriority="high" style={{ ...portraitPointer, scale: enabled ? 1.035 : 1 }} /> : <span className="cinema-portrait-fallback">{profile.initials}</span>}</Motion.div>
         {!reduced && <Motion.div className="cinema-portrait-sweep" aria-hidden="true" initial={{ x: '-130%', opacity: 0 }} animate={{ x: '230%', opacity: [0, .18, 0] }} transition={{ duration: 1.8, delay: .8, ease }} />}
         <div className="cinema-portrait-wash" aria-hidden="true" /><div className="cinema-viewfinder" aria-hidden="true"><i /><i /><i /><i /></div>
         <figcaption><span>01 / INTRODUCTION</span><span>{profile.address.addressLocality.toUpperCase()}, {profile.address.addressRegion}</span></figcaption>
         <span className="cinema-portrait-side" aria-hidden="true">{profile.copy.heroCredit[0]} / {profile.copy.heroCredit[1]}</span><span className="cinema-portrait-reel" aria-hidden="true">I</span>
       </Motion.figure>
+        <span className="cinema-portrait-stage-caption" aria-hidden="true">{profile.focus}</span>
+      </Motion.div>
     </div>
     <div className="cinema-wrap cinema-hero-bottom"><a href="#about" className="cinema-scroll"><ArrowDown size={17} aria-hidden="true" /><span>SCROLL TO EXPLORE</span></a><p>{profile.location}</p>{!reduced && <button type="button" className="cinema-ambience-toggle" onClick={() => setAmbiencePaused(value => !value)} aria-label={ambiencePaused ? 'Resume background animation' : 'Pause background animation'}>{ambiencePaused ? <Play size={12} aria-hidden="true" /> : <Pause size={12} aria-hidden="true" />}<span>{ambiencePaused ? 'RESUME AMBIENCE' : 'PAUSE AMBIENCE'}</span></button>}<span className="cinema-hero-study">LEGAL STUDIES / IN PROGRESS</span></div>
   </section>
