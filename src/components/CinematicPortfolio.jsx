@@ -76,7 +76,6 @@ function Hero() {
         <Motion.div className="cinema-portrait-image" style={{ y: enabled ? portraitY : 0, scale: enabled ? portraitScale : 1 }}>{photo ? <Motion.img src={photo} alt={profile.photoAlt} width="715" height="715" fetchPriority="high" style={{ ...portraitPointer, scale: enabled ? 1.035 : 1 }} /> : <span className="cinema-portrait-fallback">{profile.initials}</span>}</Motion.div>
         {!reduced && <Motion.div className="cinema-portrait-sweep" aria-hidden="true" initial={{ x: '-130%', opacity: 0 }} animate={{ x: '230%', opacity: [0, .18, 0] }} transition={{ duration: 1.8, delay: .8, ease }} />}
         <div className="cinema-portrait-wash" aria-hidden="true" /><div className="cinema-viewfinder" aria-hidden="true"><i /><i /><i /><i /></div>
-        <figcaption><span>01 / INTRODUCTION</span><span>{profile.address.addressLocality.toUpperCase()}, {profile.address.addressRegion}</span></figcaption>
         <span className="cinema-portrait-side" aria-hidden="true">{profile.copy.heroCredit[0]} / {profile.copy.heroCredit[1]}</span><span className="cinema-portrait-reel" aria-hidden="true">I</span>
       </Motion.figure>
         <span className="cinema-portrait-stage-caption" aria-hidden="true">{profile.focus}</span>

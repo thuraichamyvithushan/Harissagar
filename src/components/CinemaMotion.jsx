@@ -52,7 +52,7 @@ export function AnimatedChapter({ number, children, light = false }) {
   const ref = useRef(null)
   const reduced = useReducedMotion()
   const visible = useInView(ref, { once: true, amount: .5 })
-  return <div ref={ref} className={`cinema-chapter ${light ? 'on-paper' : ''}`}><span>{number} /</span><Motion.p initial={reduced ? false : { opacity: 0, y: 8 }} animate={{ opacity: reduced || visible ? 1 : 0, y: reduced || visible ? 0 : 8 }} transition={{ duration: reduced ? 0 : .65, ease }}>{children}</Motion.p><Motion.i aria-hidden="true" initial={false} animate={{ scaleX: reduced || visible ? 1 : 0 }} transition={{ duration: reduced ? 0 : 1.1, ease, delay: reduced ? 0 : .1 }} /></div>
+  return <div ref={ref} className={`cinema-chapter ${light ? 'on-paper' : ''}`}><span>{number}</span><Motion.p initial={reduced ? false : { opacity: 0, y: 8 }} animate={{ opacity: reduced || visible ? 1 : 0, y: reduced || visible ? 0 : 8 }} transition={{ duration: reduced ? 0 : .65, ease }}>{children}</Motion.p><Motion.i aria-hidden="true" initial={false} animate={{ scaleX: reduced || visible ? 1 : 0 }} transition={{ duration: reduced ? 0 : 1.1, ease, delay: reduced ? 0 : .1 }} /></div>
 }
 
 export function ConnectLink({ href, children }) {
