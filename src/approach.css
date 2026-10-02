@@ -1,0 +1,72 @@
+.philosophy { position: relative; overflow: hidden; color: var(--text-primary); background: var(--background); border-block: 1px solid var(--border); }
+.philosophy-wipe { position: absolute; inset: 0; background: var(--background-secondary); transform-origin: left; }
+.philosophy-content { position: relative; }
+.approach-topline { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 40px; }
+.approach-topline .section-label { margin-bottom: 0; }
+.philosophy .motion-label > i { background: var(--accent); }
+.philosophy .motion-label > .section-label-copy { color: var(--text-secondary); }
+.approach-edition { font-size: 9px; letter-spacing: .13em; color: var(--text-secondary); }
+.approach-intro { display: grid; grid-template-columns: minmax(0,1.75fr) minmax(0,1fr); align-items: center; gap: 70px; }
+.approach-intro h2 { font-size: clamp(44px,5.15vw,74px); line-height: 1.12; letter-spacing: -.065em; }
+.approach-intro h2 .heading-mask:last-child { color: var(--text-secondary); }
+.approach-subtitle { max-width: 410px; margin-top: 28px; font-size: 16px; line-height: 1.9; color: var(--text-secondary); }
+.approach-visual { max-width: 330px; width: 100%; justify-self: end; }
+.approach-diagram svg { width: 100%; height: auto; display: block; }
+.approach-diagram > div { display: flex; justify-content: space-around; gap: 8px; font-size: 8px; letter-spacing: .1em; color: var(--text-secondary); margin-top: 4px; }
+.approach-visual-caption { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 20px; color: var(--text-secondary); font-size: 10px; }
+.approach-stage-label { margin: 64px 0 18px; display: flex; justify-content: space-between; gap: 24px; font-size: 9px; letter-spacing: .12em; color: var(--text-secondary); }
+.approach-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); border-block: 1px solid rgba(255,255,255,.16); }
+.approach-tab { position: relative; text-align: left; padding: 28px 30px 28px 0; border: 0; background: transparent; transition: background .35s var(--motion-ease); min-width: 0; }
+.approach-tab + .approach-tab { padding-left: 30px; border-left: 1px solid var(--border); }
+.approach-tab::after { content: ''; position: absolute; height: 2px; left: 0; bottom: -1px; right: 0; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--motion-ease); }
+.approach-tab[aria-selected='true']::after { transform: scaleX(1); }
+.approach-tab:hover, .approach-tab[aria-selected='true'] { background: rgba(56,214,210,.025); }
+.approach-tab-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 23px; color: var(--text-secondary); }
+.approach-tab-number { font-size: 10px; letter-spacing: .12em; }
+.approach-tab-top svg { transition: transform .35s var(--motion-ease), opacity .35s; opacity: .45; }
+.approach-tab[aria-selected='true'] .approach-tab-top { color: var(--accent); }
+.approach-tab[aria-selected='true'] .approach-tab-top svg { opacity: 1; transform: rotate(45deg); }
+.approach-tab-name { display: block; font: 400 clamp(23px,2.1vw,30px)/1.2 var(--font-heading); letter-spacing: -.05em; }
+.approach-tab-summary { display: block; font-size: 14px; line-height: 1.8; margin-top: 15px; color: var(--text-secondary); max-width: 285px; }
+.philosophy button:focus-visible, .philosophy a:focus-visible, .approach-panel:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.approach-panel { position: relative; margin-top: 40px; min-height: 215px; }
+.approach-panel-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 70px; }
+.approach-principle { display: flex; gap: 22px; align-items: start; }
+.approach-panel-number { font: 300 68px/.9 var(--font-heading); letter-spacing: -.07em; color: var(--text-secondary); }
+.approach-principle small { display: block; font-size: 8px; letter-spacing: .15em; color: var(--text-secondary); margin-bottom: 14px; }
+.approach-principle h3 { font-size: clamp(22px,2vw,28px); line-height: 1.35; letter-spacing: -.045em; max-width: 230px; }
+.approach-detail > p { max-width: 625px; font-size: 16px; line-height: 1.9; color: var(--text-secondary); }
+.approach-practices { display: flex; flex-wrap: wrap; gap: 10px 24px; padding: 0; margin: 25px 0 0; list-style: none; }
+.approach-practices li { display: flex; gap: 8px; align-items: center; font-size: 10px; color: var(--accent-light); }
+.approach-practices li::before { content: ''; width: 3px; height: 3px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+.approach-footer { display: flex; justify-content: space-between; align-items: center; gap: 24px; border-top: 1px solid var(--border); padding-top: 24px; }
+.approach-footer > p { font-size: 11px; color: var(--text-secondary); display: flex; align-items: center; gap: 14px; }
+.approach-footer > p span { display: inline-flex; width: 22px; height: 22px; align-items: center; justify-content: center; border: 1px solid rgba(56,214,210,.3); border-radius: 50%; }
+.approach-contact { display: inline-flex; align-items: center; gap: 22px; font-size: 12px; padding-block: 8px; border-bottom: 1px solid rgba(56,214,210,.25); transition: border-color .35s; }
+.approach-contact svg { transition: transform .35s var(--motion-ease); }
+.approach-contact:hover { border-color: var(--accent); }
+.approach-contact:hover svg { transform: translate(3px,3px); }
+@media (max-width: 1023px) {
+  .approach-intro { gap: 35px; grid-template-columns: 1.5fr 1fr; }
+  .approach-intro h2 { font-size: 47px; }
+  .approach-tab { padding-right: 22px; }.approach-tab + .approach-tab { padding-left: 22px; }
+  .approach-panel-inner { gap: 35px; grid-template-columns: 1fr 1.3fr; }
+  .approach-principle { gap: 16px; }.approach-panel-number { font-size: 52px; }
+}
+@media (max-width: 767px) {
+  .approach-topline { margin-bottom: 30px; }.approach-edition { display: none; }
+  .approach-intro { grid-template-columns: 1fr; gap: 30px; }.approach-intro h2 { font-size: clamp(35px,8vw,54px); }
+  .approach-subtitle { margin-top: 23px; font-size: 15px; }
+  .approach-visual { justify-self: start; max-width: 275px; }.approach-visual-caption { margin-top: 18px; font-size: 9px; }
+  .approach-stage-label { margin-top: 42px; font-size: 8px; }.approach-stage-label > span:last-child { display: none; }
+  .approach-tab, .approach-tab + .approach-tab { padding: 20px 10px; }
+  .approach-tab:first-child { padding-left: 0; }.approach-tab:last-child { padding-right: 0; }
+  .approach-tab-name { font-size: clamp(15px,4.1vw,22px); letter-spacing: -.055em; }.approach-tab-summary { display: none; }
+  .approach-tab-top { margin-bottom: 18px; }.approach-tab-top svg { width: 15px; height: 15px; }.approach-tab-number { font-size: 9px; }
+  .approach-panel { margin-top: 30px; min-height: 310px; }.approach-panel-inner { grid-template-columns: 1fr; gap: 28px; }
+  .approach-principle h3 { font-size: 26px; max-width: none; }.approach-panel-number { font-size: 55px; }.approach-principle small { margin-bottom: 9px; }
+  .approach-detail > p { font-size: 15px; }.approach-practices { gap: 12px 20px; margin-top: 20px; }.approach-practices li { font-size: 9px; }
+  .approach-footer { align-items: start; flex-direction: column; gap: 20px; }.approach-contact { justify-content: space-between; width: 100%; }
+}
+@media (max-width: 359px) { .approach-panel { min-height: 360px; } }
+@media (prefers-reduced-motion: reduce) { .philosophy-wipe { transform: none !important; } }
