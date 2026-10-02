@@ -16,6 +16,13 @@ npm run preview
 
 On Windows PowerShell, use `npm.cmd` if script execution is disabled. If Vite's config bundler cannot access parent directories in a restricted environment, use `npm.cmd run dev -- --configLoader runner`. Production files are generated in `dist/` for static hosting. This work does not publish the website.
 
+## Deploy to Vercel
+
+1. Import this GitHub repository into Vercel and use the repository root as the Root Directory.
+2. The root `vercel.json` selects Vite, installs dependencies with `npm ci`, runs `npm run build`, and serves `dist/`. It also sends page requests to `index.html` so direct links work.
+3. Set the `VITE_SITE_URL` environment variable in Vercel to the final production URL (for example, `https://your-project.vercel.app/`) so canonical and social metadata use the correct domain. Redeploy after changing it.
+4. Deploy. When the repository is connected to Vercel, subsequent pushes to the production branch trigger a new production deployment.
+
 ## Editable content
 
 All profile information, verified employment and education details, languages, capabilities, philosophy, portrait filenames, image crop settings and scene configuration live in `src/data/portfolioData.js`.
