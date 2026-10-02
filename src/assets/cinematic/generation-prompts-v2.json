@@ -1,0 +1,34 @@
+{
+  "mode": "built-in image_gen",
+  "purpose": "Decorative cinematic imagery; no personal or workplace claims. Original Haris portrait preserved.",
+  "assets": [
+    {
+      "key": "about",
+      "file": "about-landscape-v2.webp",
+      "prompt": "Use case: photorealistic-natural. Create one cinematic editorial landscape photograph for a professional portfolio's full-width quotation interlude. Wide 16:9 horizontal composition. An unnamed Australian-style sandstone coastal headland above a calm ocean, olive coastal grasses and textured rock in the foreground, a subtle curving walking path, layers of distant cliffs through a light sea mist. Quiet, human-scale, realistic scenery with natural geological detail. Warm early morning sidelight, restrained warm ivory sky, charcoal rock, muted olive vegetation, bronze highlights; neutral desaturated cinematic color grade matching a charcoal, ivory and bronze website. Keep clear luminous midtones because a dark website overlay will be applied. Place landscape interest at outer thirds, with calm open sky and softly textured water through the central area where a short white quote overlays. Center crop remains interesting on mobile. No people, buildings, text, lettering, logos, watermark or borders. Do not depict an identifiable exact landmark; decorative image, not a claimed travel photograph.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a0fae9-401a-7a53-a438-c72775a2dda3\\exec-b191fed9-11eb-4121-9b08-12e79f09ec92.png",
+      "mobile": "about-landscape-mobile-v2.webp"
+    },
+    {
+      "key": "experience",
+      "file": "experience-optics-v2.webp",
+      "prompt": "Use case: product-mockup. Create one photorealistic cinematic editorial product photograph for a tall professional skills card about outdoor optics sales and marketing. Portrait 3:4 composition. A physically plausible premium unbranded binocular with two objective lenses, hinged bridge, matte charcoal body, fine rubber grip texture, subtle natural green lens coatings, resting solidly on rough dark stone. Entire binocular visible in the middle third with room around it. Softly blurred olive outdoor woodland background, warm side light and subtle bronze rim highlights, realistic glass reflections and tactile product detail. Sophisticated charcoal, muted olive and warm ivory palette, cinematic restrained contrast with visible midtone detail. Upper third quiet for a small decorative label, bottom quarter uncluttered dark stone for web caption; product remains fully visible in narrower crops. No gun, riflescope, people, floating objects, exaggerated lens geometry, text, lettering, logos, branding, watermarks or borders. One cohesive photographic scene; no suggestion of an actual branded company product.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a0fae9-401a-7a53-a438-c72775a2dda3\\exec-6f5cfc62-767c-4913-a0aa-f4e0020f26a3.png",
+      "mobile": "experience-optics-mobile-v2.webp"
+    },
+    {
+      "key": "strategy",
+      "file": "strategy-city-v2.webp",
+      "prompt": "Use case: photorealistic-natural. Create one wide 16:9 cinematic architectural photograph for a professional portfolio's work, study and community section backdrop. Upward view through a quiet contemporary civic or commercial courtyard, elegant glass and bronze-metal facades alongside warm limestone, strong measured geometry, fine real stone texture and realistic perspective. No specific identifiable building. Buildings frame the outer left and right edges, subdued open sky through center, architectural lines gently converge toward center. Restrained warm late-afternoon lighting, charcoal reflections, olive-gray glass, ivory stone and subtle bronze sunlight; neutral editorial color grade, rich but readable midtones before a dark website overlay. The central and lower areas must remain visually calm behind three website text cards, and center crop must work on mobile. Photorealistic, understated and commercially professional. No people, signage, readable words, company or university logos, watermark, borders, collage or fantasy architecture.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a0fae9-401a-7a53-a438-c72775a2dda3\\exec-bd9c5beb-4e6f-412e-9de1-7aa2bc11a1ab.png",
+      "mobile": "strategy-city-mobile-v2.webp"
+    },
+    {
+      "key": "cta",
+      "file": "cta-mountain-v2.webp",
+      "prompt": "Use case: photorealistic-natural. Create one wide 16:9 cinematic landscape photograph for the contact section of a professional portfolio with large white text on the left. An unnamed natural alpine mountain range at dawn, successive textured ridges receding through soft mist, one believable rugged peak on the right catching restrained warm bronze sunlight, muted olive-dark foreground slopes and warm ivory cloud layers above. Photorealistic terrain and natural atmospheric depth, quiet expansive mood, sophisticated charcoal, olive, warm gray and bronze cinematic grading. Keep luminous midtone details because a dark overlay will be applied. Left two thirds should be calm hazy distant mountain layers with low contrast and generous visual breathing space for text; main peak and sunlit details on right third. Composition also remains compelling in a centered portrait crop. No people, buildings, text, logos, watermark, borders, neon colors or exaggerated fantasy peaks. Decorative landscape with no claim that it is a particular real place.",
+      "source": "C:\\Users\\ASUS\\.codex\\generated_images\\01a0fae9-401a-7a53-a438-c72775a2dda3\\exec-54ab78f2-ce65-40e1-ba26-36bd6b45d615.png",
+      "mobile": "cta-mountain-mobile-v2.webp"
+    }
+  ]
+}

@@ -1,0 +1,408 @@
+@import 'tailwindcss';
+@theme { --font-sans: 'Manrope Variable', sans-serif; --font-heading: 'Sora Variable', sans-serif; --color-ivory: #eee9df; --color-navy: #121514; }
+:root {
+  font-family: 'Manrope Variable', sans-serif; color: #eee9df; background: #121514;
+  font-synthesis: none; -webkit-font-smoothing: antialiased;
+  --background: #121514; --text-primary: #eee9df; --text-secondary: #afa99e;
+  --accent: #cda879; --accent-light: #dfc7a7; --gold: #cda879;
+  --paper: #eee9df; --ink: #222622; --border: #eee9df26;
+  --font-heading: 'Sora Variable', sans-serif; --font-sans: 'Manrope Variable', sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 95px; }
+body { margin: 0; min-width: 300px; }
+button, a, summary { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+section:focus, main:focus { outline: none; }
+::selection { color: var(--ink); background: var(--accent); }
+h1, h2, h3, p, figure, blockquote { margin: 0; }
+h1, h2, h3 { font-weight: 500; }
+img { display: block; max-width: 100%; }
+svg { flex-shrink: 0; }
+.cinema-wrap, .shell { width: calc(100% - 112px); max-width: 1440px; margin-inline: auto; }
+.cinema-section { padding-block: 122px; }
+.cinema-paper { color: var(--ink); background: var(--paper); }
+.cinema-overline { font-size: 9px; line-height: 1.8; letter-spacing: .16em; text-transform: uppercase; }
+.cinema-chapter { display: flex; align-items: center; gap: 19px; margin-bottom: 65px; font-size: 9px; letter-spacing: .15em; line-height: 1.6; }
+.cinema-chapter > span { color: var(--accent); white-space: nowrap; }
+.cinema-chapter > p { flex-shrink: 0; }
+.cinema-chapter > i { height: 1px; flex-grow: 1; background: var(--border); margin-left: 35px; }
+.on-paper > span { color: #7d5935; }
+.on-paper > i { background: #22262229; }
+.cinema-section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 70px; margin-bottom: 68px; }
+.cinema-section-head > p { max-width: 270px; font-size: 13px; color: var(--text-secondary); line-height: 1.9; padding-bottom: 7px; }
+.cinema-paper .cinema-section-head > p { color: #64665c; }
+.cinema-wrap h2 { font-size: clamp(40px, 4.7vw, 74px); line-height: 1.1; font-weight: 500; letter-spacing: -.055em; }
+.cinema-wrap h2 em { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.055em; color: var(--accent-light); }
+.cinema-paper h2 em { color: #797d6e; }
+.cinema-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 36px; padding-block: 15px; border-bottom: 1px solid currentColor; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; transition: color .25s; }
+.cinema-link:hover { color: var(--accent); }
+.cinema-link svg { transition: transform .35s; }
+.cinema-link:hover svg { transform: translate(3px, -3px); }
+.cinema-tags { display: flex; flex-wrap: wrap; gap: 7px; padding: 0; margin: 22px 0 0; list-style: none; }
+.cinema-tags li { font-size: 9px; line-height: 1.7; border: 1px solid var(--border); padding: 6px 10px; color: #c5bfb4; }
+.cinema-paper .cinema-tags li { border-color: #22262226; color: #63685b; }
+.cinema-reading-progress { position: fixed; inset: 0 0 auto; height: 2px; transform-origin: left; background: var(--accent); z-index: 100; }
+.skip-link { position: fixed; top: 15px; left: 20px; padding: 14px 20px; background: var(--accent); color: var(--ink); z-index: 120; transform: translateY(-180%); }
+.skip-link:focus { transform: none; }
+.film-grain { position: fixed; inset: 0; z-index: 80; pointer-events: none; opacity: .045; mix-blend-mode: soft-light; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23grain)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+/* Existing navigation retains its keyboard and native dialog behavior. */
+.site-header { position: fixed; inset: 0 0 auto; z-index: 60; background: #121514e8; border-bottom: 1px solid var(--border); backdrop-filter: blur(18px); }
+.nav-inner { height: 88px; display: flex; align-items: center; gap: 36px; transition: height .3s; }
+.scrolled .nav-inner { height: 72px; }
+.brand { display: flex; align-items: center; gap: 15px; margin-right: auto; }
+.brand-mark { font-size: 30px; font-weight: 600; letter-spacing: -.09em; }
+.brand-mark i { display: inline-block; width: 5px; height: 5px; background: var(--accent); border-radius: 50%; margin-left: 5px; }
+.brand > span:last-child { text-transform: uppercase; font-size: 9px; letter-spacing: .12em; font-weight: 600; }
+.desktop-nav { display: flex; gap: 27px; }
+.desktop-nav a { position: relative; font-size: 10px; padding-block: 12px; color: #bbb7ae; }
+.desktop-nav a::after { content: ''; position: absolute; bottom: 3px; left: 0; right: 0; height: 1px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .3s; }
+.desktop-nav a:hover::after, .desktop-nav a[aria-current]::after { transform: scaleX(1); }
+.desktop-nav a[aria-current] { color: var(--text-primary); }
+.nav-linkedin { display: inline-flex; align-items: center; gap: 14px; border: 1px solid #cda87966; padding: 10px 17px; font-size: 10px; color: var(--accent-light); }
+.nav-linkedin:hover { background: #cda87915; }
+.cinema-social-links { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
+.cinema-social-links a { display: inline-flex; align-items: center; gap: 9px; font-size: 10px; color: var(--accent-light); padding-block: 10px; transition: color .25s; }
+.cinema-social-links a:hover { color: var(--text-primary); }
+.cinema-social-links--compact { gap: 8px; }
+.cinema-social-links--compact a { width: 36px; height: 36px; justify-content: center; padding: 0; border: 1px solid #cda87945; }
+.cinema-social-links--compact a span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.cinema-mobile-socials { margin-top: auto; padding-top: 28px; }
+.mobile-menu .cinema-social-links { display: flex; gap: 22px; }
+.mobile-menu .cinema-social-links a { font-size: 10px; letter-spacing: 0; border: 0; padding-block: 10px; gap: 9px; }
+.mobile-menu .cinema-social-links svg { width: 17px; margin-left: 0; }
+.menu-toggle, .menu-close { display: none; background: none; border: 0; padding: 10px; }
+.menu-glyph { display: block; width: 25px; height: 25px; position: relative; }
+.menu-glyph > span { position: absolute; width: 23px; height: 1px; background: currentColor; top: 12px; left: 1px; }
+.mobile-menu { margin: 0; padding: 30px; width: 100%; max-width: none; height: 100dvh; max-height: none; background: var(--background); color: var(--text-primary); border: 0; isolation: isolate; overflow-y: auto; }
+.mobile-menu[open] { display: flex; flex-direction: column; }
+.mobile-menu::backdrop { background: var(--background); }
+.mobile-menu-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7vh; }
+.mobile-menu .eyebrow { font-size: 12px; }
+.mobile-menu-top small { display: block; font-size: 8px; color: var(--accent); margin-top: 8px; }
+.menu-close { display: inline-flex; }
+.mobile-menu nav { display: grid; }
+.mobile-menu nav a { display: flex; align-items: center; gap: 22px; font-size: clamp(25px, 5vw, 44px); letter-spacing: -.035em; padding-block: 15px; border-bottom: 1px solid var(--border); }
+.mobile-menu nav a > span { font-size: 9px; color: var(--accent); letter-spacing: .06em; }
+.mobile-menu nav svg { width: 20px; margin-left: auto; }
+.mobile-linkedin { margin-top: auto; padding-top: 28px; display: flex; justify-content: space-between; font-size: 12px; color: var(--accent-light); }
+.mobile-menu > p { font-size: 11px; line-height: 1.8; color: var(--text-secondary); margin-top: 18px; }
+.mobile-menu .cinematic-scene { position: absolute; inset: 0; opacity: .16; z-index: -1; pointer-events: none; overflow: hidden; }
+.mobile-menu .scene-camera { position: absolute; inset: -30px; }
+.mobile-menu .scene-camera picture, .mobile-menu .scene-camera img { width: 100%; height: 100%; object-fit: cover; }
+/* Opening portrait: a film poster with layered type and a retained original photo. */
+.cinema-hero { position: relative; min-height: max(820px, 100svh); display: flex; flex-direction: column; padding-top: 120px; overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 85% 40%, #383a30, #191d18 42%, #121514 72%); }
+.cinema-hero-light { position: absolute; z-index: -1; width: 70%; height: 90%; right: -12%; top: -13%; pointer-events: none; background: radial-gradient(ellipse, #cda87922, transparent 65%); }
+.cinema-hero-gridlines { position: absolute; inset: 88px 0 0; pointer-events: none; border-bottom: 8px solid #0e1110; background: linear-gradient(90deg, transparent 4%, #eee9df06 4%, transparent calc(4% + 1px), transparent 96%, #eee9df06 96%, transparent calc(96% + 1px)); }
+.cinema-hero-aperture { position: absolute; inset: 88px 0 0; z-index: 5; pointer-events: none; }
+.cinema-hero-shutter { position: absolute; left: 0; right: 0; height: 50%; background: #0e1110; }
+.cinema-hero-shutter--top { top: 0; transform-origin: top; border-bottom: 1px solid #cda87930; }
+.cinema-hero-shutter--bottom { bottom: 0; transform-origin: bottom; border-top: 1px solid #cda87930; }
+.cinema-hero-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; align-items: center; position: relative; padding-block: 20px 44px; flex-grow: 1; }
+.cinema-hero-frame-number { position: absolute; z-index: -1; left: -35px; top: 4%; font: 500 clamp(200px, 29vw, 430px)/1 'Sora Variable', sans-serif; color: transparent; -webkit-text-stroke: 1px #eee9df08; letter-spacing: -.09em; pointer-events: none; }
+.cinema-hero-copy { position: relative; z-index: 2; }
+.cinema-hero-copy > .cinema-overline { color: var(--accent); margin-bottom: 24px; }
+.cinema-hero-prologue { display: flex; align-items: center; gap: 17px; }
+.cinema-hero-prologue > span { width: 48px; height: 1px; background: linear-gradient(90deg, var(--accent), #cda87933); transform-origin: left; }
+.cinema-hero h1 { font-size: clamp(100px, 12vw, 192px); line-height: .93; font-weight: 500; letter-spacing: -.075em; text-transform: none; width: 119%; }
+.cinema-name-mask { display: block; overflow: hidden; padding-bottom: .11em; margin-bottom: -.11em; }
+.cinema-name-mask > span { display: block; }
+.cinema-name-mask:last-child { color: var(--accent-light); font: italic 400 1.16em/.96 Georgia, 'Times New Roman', serif; letter-spacing: -.075em; padding-right: .1em; }
+.cinema-name-mask i { color: var(--accent); font-style: normal; }
+.cinema-hero-intro { max-width: 420px; margin-top: 32px; }
+.cinema-hero-position { border-left: 1px solid #cda87970; padding-left: 17px; }
+.cinema-hero-role { font-size: 19px; letter-spacing: -.025em; }
+.cinema-hero-company { font-size: 10px; color: var(--accent-light); margin-top: 10px; }
+.cinema-hero-statement { font-size: 13px; line-height: 1.9; color: var(--text-secondary); margin-top: 22px; max-width: 365px; }
+.cinema-hero-actions { display: flex; align-items: center; gap: 24px; margin-top: 29px; }
+.cinema-hero-intro .cinema-hero-primary { margin: 0; padding: 19px 23px; border: 1px solid var(--accent-light); background: var(--paper); color: var(--ink); gap: 29px; font-size: 9px; }
+.cinema-hero-primary:hover { background: var(--accent-light); border-color: var(--accent); }
+.cinema-hero-profile { display: grid; place-items: center; position: relative; width: 50px; height: 50px; border: 1px solid #eee9df38; border-radius: 50%; color: var(--accent-light); transition: background .3s, border-color .3s; }
+.cinema-hero-profile:hover { background: #cda87918; border-color: var(--accent); }
+.cinema-hero-profile > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.cinema-portrait { position: relative; align-self: stretch; min-height: 570px; overflow: hidden; background: #a59a83; margin: -10px -36px -10px -8%; mask-image: linear-gradient(90deg, transparent, #000 18%, #000 95%, transparent); }
+.cinema-portrait-image { position: absolute; inset: -30px 0; }
+.cinema-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; filter: grayscale(1) sepia(.3) contrast(1.07); mix-blend-mode: multiply; }
+.cinema-portrait-wash { position: absolute; inset: 0; background: linear-gradient(0deg, #121514 0, #121514b3 12%, transparent 44%, #12151455 100%), linear-gradient(90deg, #121514f2, #12151466 14%, transparent 40%); }
+.cinema-viewfinder { position: absolute; inset: 25px 35px; pointer-events: none; }
+.cinema-viewfinder i { position: absolute; width: 18px; height: 18px; border: 1px solid #eee9df66; }
+.cinema-viewfinder i:nth-child(1) { top: 0; left: 0; border-right: 0; border-bottom: 0; }
+.cinema-viewfinder i:nth-child(2) { top: 0; right: 0; border-left: 0; border-bottom: 0; }
+.cinema-viewfinder i:nth-child(3) { bottom: 0; left: 0; border-right: 0; border-top: 0; }
+.cinema-viewfinder i:nth-child(4) { bottom: 0; right: 0; border-left: 0; border-top: 0; }
+.cinema-portrait figcaption { position: absolute; left: 38px; right: 38px; bottom: 36px; display: flex; justify-content: space-between; gap: 15px; font-size: 7px; letter-spacing: .12em; }
+.cinema-portrait-side { position: absolute; right: 48px; top: 49px; font-size: 7px; writing-mode: vertical-rl; letter-spacing: .17em; color: #eee9dfbb; }
+.cinema-portrait-reel { position: absolute; right: 48px; bottom: 65px; font: italic 90px/1 Georgia, serif; color: #eee9df16; }
+.cinema-portrait-fallback { display: grid; place-items: center; height: 100%; font-size: 160px; color: #35382d; }
+.cinema-hero-bottom { display: flex; justify-content: space-between; align-items: center; gap: 25px; position: relative; border-top: 1px solid var(--border); padding-block: 23px 31px; font-size: 9px; color: var(--text-secondary); }
+.cinema-scroll { display: inline-flex; align-items: center; gap: 18px; color: var(--text-primary); font-size: 8px; letter-spacing: .12em; }
+.cinema-scroll svg { color: var(--accent); }
+.cinema-hero-study { font-size: 7px; letter-spacing: .12em; }
+/* An editorial paper chapter offers light and space between darker scenes. */
+.cinema-about { padding-block: 112px 124px; }
+.cinema-about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
+.cinema-about-title h2 { font-size: clamp(43px, 5.3vw, 81px); }
+.cinema-about-title .cinema-overline { color: #77796d; max-width: 260px; margin-top: 16px; }
+.cinema-signature { display: block; font: italic 36px Georgia, serif; margin-top: 55px; color: #7b6144; letter-spacing: -.06em; }
+.cinema-pullquote { font-size: clamp(22px, 2.3vw, 34px); letter-spacing: -.035em; line-height: 1.5; }
+.cinema-biography { margin-top: 38px; }
+.cinema-biography p { font-size: 13px; line-height: 2; color: #5f655b; margin-top: 19px; }
+.cinema-about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; padding-top: 30px; margin-top: 34px; border-top: 1px solid #22262229; }
+.cinema-about-facts > div { display: flex; align-items: center; gap: 22px; }
+.cinema-about-facts strong { font-size: 54px; font-weight: 500; letter-spacing: -.065em; }
+.cinema-about-facts span { font-size: 9px; color: #656a5d; line-height: 1.8; max-width: 112px; }
+/* Local scene photographs are decorative; professional facts stay in the data. */
+.cinema-scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.cinema-scene picture { position: absolute; inset: -40px 0; display: block; }
+.cinema-scene img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.25) sepia(.2); }
+.cinema-scene-shade { position: absolute; inset: 0; background: linear-gradient(0deg, #121514ad, #12151466 50%, #121514a3); }
+.cinema-interlude { position: relative; min-height: 540px; display: flex; align-items: center; overflow: hidden; }
+.cinema-interlude-content { position: relative; z-index: 1; text-align: center; padding-block: 100px; }
+.cinema-interlude .cinema-overline { color: #e0d6c6; }
+.cinema-interlude blockquote { font: italic clamp(36px, 4.7vw, 72px)/1.2 Georgia, serif; letter-spacing: -.035em; max-width: 900px; margin: 45px auto 40px; }
+.cinema-interlude-credit { display: inline-block; padding-top: 24px; border-top: 1px solid #eee9df55; font-size: 7px; }
+.cinema-scene-number { position: absolute; right: 6%; bottom: -28px; font: 190px Georgia, serif; color: #eee9df0b; }
+/* Capability disclosures paired with a cinematic still. */
+.cinema-expertise { background: #171b17; }
+.cinema-expertise-layout { display: grid; grid-template-columns: 1.25fr 1fr; gap: 80px; align-items: start; }
+.cinema-capability { border-top: 1px solid var(--border); }
+.cinema-capability-list > div:last-child .cinema-capability { border-bottom: 1px solid var(--border); }
+.cinema-capability summary { display: flex; align-items: center; gap: 24px; list-style: none; cursor: pointer; padding-block: 24px; }
+.cinema-capability summary::-webkit-details-marker { display: none; }
+.cinema-capability summary > .cinema-overline { color: var(--accent); width: 22px; flex-shrink: 0; }
+.cinema-capability h3 { font-size: clamp(16px, 1.6vw, 25px); letter-spacing: -.035em; transition: color .3s, transform .3s; line-height: 1.5; }
+.cinema-capability summary:hover h3 { color: var(--accent-light); transform: translateX(5px); }
+.cinema-capability-toggle { margin-left: auto; display: flex; color: var(--accent); flex-shrink: 0; }
+.cinema-minus, .cinema-capability[open] .cinema-plus { display: none; }
+.cinema-capability[open] .cinema-minus { display: block; }
+.cinema-capability > p { font-size: 13px; line-height: 1.9; color: var(--text-secondary); padding: 0 35px 25px 46px; }
+.cinema-capability-art { position: sticky; top: 110px; height: 640px; padding: 42px; overflow: hidden; }
+.cinema-capability-art .cinema-scene img { object-position: 58% center; }
+.cinema-capability-art .cinema-scene-shade { background: linear-gradient(0deg, #121514dd, #12151433 65%, #12151470); }
+.cinema-art-frame { position: absolute; inset: 20px; border: 1px solid #eee9df35; }
+.cinema-capability-art > .cinema-overline { position: relative; z-index: 1; font-size: 7px; }
+.cinema-art-copy { position: absolute; bottom: 100px; left: 42px; right: 42px; }
+.cinema-art-copy > span { font-size: 13px; }
+.cinema-art-copy em { display: block; font: italic 46px/1.1 Georgia, serif; letter-spacing: -.04em; margin-top: 17px; }
+.cinema-art-caption { position: absolute !important; bottom: 42px; left: 42px; right: 42px; color: var(--accent-light); }
+/* Every role stays visible in a chronological, numbered timeline. */
+.cinema-experience { background: #121514; }
+.cinema-experience-layout { display: grid; grid-template-columns: .9fr 1.25fr; gap: 105px; align-items: start; }
+.cinema-sticky-heading { position: sticky; top: 110px; }
+.cinema-sticky-heading h2 { font-size: clamp(46px, 5.5vw, 82px); }
+.cinema-sticky-heading p { max-width: 300px; font-size: 13px; color: var(--text-secondary); line-height: 1.95; margin-top: 30px; }
+.cinema-sticky-heading .cinema-link { margin-top: 24px; }
+.cinema-timeline-caption { display: block; margin-top: 75px; color: #8f9488; }
+.cinema-timeline { position: relative; border-left: 1px solid #cda8793b; }
+.cinema-timeline-entry { position: relative; padding-left: 40px; }
+.cinema-timeline-entry::before { content: ''; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; background: #121514; border: 1px solid var(--accent); border-radius: 50%; }
+.cinema-timeline-entry article { padding-bottom: 45px; margin-bottom: 37px; border-bottom: 1px solid var(--border); }
+.cinema-timeline-entry:last-child article { margin-bottom: 0; }
+.cinema-job-top { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+.cinema-job-top > .cinema-overline { color: var(--accent-light); font-size: 8px; }
+.cinema-current { display: inline-flex; align-items: center; gap: 7px; font-size: 7px; letter-spacing: .08em; color: #cbc8b5; white-space: nowrap; }
+.cinema-current i { width: 4px; height: 4px; background: #a7b69a; border-radius: 50%; }
+.cinema-company { margin-top: 26px; font-size: 11px; color: var(--accent-light); line-height: 1.6; }
+.cinema-timeline h3 { font-size: clamp(23px, 2.4vw, 35px); font-weight: 400; letter-spacing: -.04em; line-height: 1.3; margin-top: 10px; }
+.cinema-job-meta { font-size: 10px; line-height: 1.9; color: #979d90; margin-top: 18px; }
+.cinema-job-description { font-size: 13px; line-height: 1.95; color: #b2b6a9; margin-top: 23px; }
+.cinema-responsibilities { margin-top: 22px; font-size: 11px; }
+.cinema-responsibilities summary { display: inline-flex; align-items: center; gap: 15px; cursor: pointer; color: var(--accent-light); list-style: none; }
+.cinema-responsibilities summary::-webkit-details-marker { display: none; }
+.cinema-responsibilities ul { padding-left: 18px; color: var(--text-secondary); font-size: 12px; line-height: 1.8; margin-top: 16px; }
+.cinema-responsibilities li + li { margin-top: 9px; }
+.cinema-fields { background: #262d24; padding-block: 45px; }
+.cinema-fields .cinema-overline { color: var(--accent); }
+.cinema-fields .cinema-wrap > div { margin-top: 20px; font-size: clamp(22px, 2.7vw, 40px); letter-spacing: -.04em; line-height: 1.6; }
+.cinema-fields i { font-style: normal; color: #9a977b; padding-inline: 10px; }
+/* A wide scene, with readable inset panels for the three existing principles. */
+.cinema-approach { position: relative; overflow: hidden; }
+.cinema-approach > .cinema-wrap { position: relative; }
+.cinema-approach .cinema-scene-shade { background: #121514b8; }
+.cinema-philosophy { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 65px; }
+.cinema-philosophy > div { border: 1px solid #eee9df35; background: #121514e8; padding: 34px 27px; }
+.cinema-philosophy .cinema-overline { color: var(--accent); }
+.cinema-philosophy h3 { font: italic 31px/1.2 Georgia, serif; margin-top: 36px; }
+.cinema-philosophy p { font-size: 12px; color: #b4b5a9; line-height: 1.95; margin-top: 21px; }
+.cinema-philosophy ul { list-style: none; padding: 0; margin: 28px 0 0; font-size: 10px; color: #cdcdbd; }
+.cinema-philosophy li { padding-block: 10px; border-top: 1px solid var(--border); line-height: 1.8; }
+.cinema-philosophy-outcome { display: flex; justify-content: space-between; gap: 15px; margin-top: 24px; font-size: 9px; line-height: 1.8; color: var(--accent-light); }
+/* Academic entries preserve the Reading status for both ongoing qualifications. */
+.cinema-education-list { border-top: 1px solid #22262233; }
+.cinema-education-entry { display: grid; grid-template-columns: 40px minmax(0, 1fr) 185px; gap: 28px; padding-block: 39px; border-bottom: 1px solid #22262229; }
+.cinema-education-index { color: #7d5935; padding-top: 3px; }
+.cinema-institution { font-size: 11px; color: #64695d; line-height: 1.7; }
+.cinema-education-entry h3 { font-size: clamp(23px, 2.4vw, 35px); letter-spacing: -.04em; line-height: 1.3; margin-top: 12px; max-width: 700px; }
+.cinema-field { font-size: 11px; color: #6c7165; margin-top: 13px; }
+.cinema-education-description { font-size: 12px; color: #61675b; line-height: 1.9; max-width: 580px; margin-top: 18px; }
+.cinema-education-period { text-align: right; font-size: 10px; line-height: 1.8; padding-top: 2px; color: #626a5b; }
+.cinema-education-period > p { display: inline-flex; align-items: center; gap: 7px; border: 1px solid #64755750; padding: 5px 9px; margin-top: 15px; font-size: 8px; color: #415536; }
+.cinema-education-period i { width: 4px; height: 4px; border-radius: 50%; background: #61704d; }
+.cinema-education-current { background: linear-gradient(90deg, transparent, #72805a08); }
+/* Community entries and the association remain distinct. */
+.cinema-community { background: #1c211c; }
+.cinema-community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+.cinema-community-grid > div { background: #1c211c; padding: 36px; }
+.cinema-community-grid .cinema-overline { color: var(--accent); font-size: 8px; }
+.cinema-community-grid h3 { font-size: 27px; letter-spacing: -.04em; line-height: 1.3; margin-top: 31px; }
+.cinema-community-role { font-size: 12px; line-height: 1.8; margin-top: 14px; }
+.cinema-community-role span { display: block; color: var(--accent-light); font-size: 10px; margin-top: 5px; }
+.cinema-community-description { font-size: 12px; line-height: 1.9; color: var(--text-secondary); margin-top: 20px; }
+.cinema-community-period { display: flex; justify-content: space-between; gap: 15px; color: #a7ad9c; font-size: 9px; border-top: 1px solid var(--border); margin-top: 28px; padding-top: 18px; }
+.cinema-association { display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: center; gap: 35px; padding-block: 34px; margin-top: 30px; border-bottom: 1px solid var(--border); }
+.cinema-association > span { color: var(--accent); font-size: 8px; }
+.cinema-association h3 { font-size: 20px; letter-spacing: -.025em; line-height: 1.4; }
+.cinema-association p { text-align: right; font-size: 10px; line-height: 1.8; color: var(--text-secondary); }
+.cinema-details { background: #121514; }
+.cinema-details-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+.cinema-language-label { margin-top: 50px; color: var(--accent); }
+.cinema-languages { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 28px; margin-top: 27px; }
+.cinema-languages > div { border-top: 1px solid var(--border); padding-top: 21px; }
+.cinema-languages .cinema-overline { color: #8e947f; font-size: 8px; }
+.cinema-languages h3 { font-size: 30px; letter-spacing: -.04em; margin-top: 15px; }
+.cinema-languages p { font-size: 9px; color: var(--text-secondary); margin-top: 10px; line-height: 1.8; }
+.cinema-skill-groups > div + div { margin-top: 33px; }
+.cinema-skill-groups h3 { font-size: 14px; font-weight: 500; color: var(--accent-light); }
+.cinema-skill-groups .cinema-tags { margin-top: 17px; }
+/* Closing scene and credits. */
+.cinema-contact { position: relative; overflow: hidden; padding-block: 112px 42px; }
+.cinema-contact .cinema-scene-shade { background: linear-gradient(90deg, #121514e8, #12151461), linear-gradient(0deg, #121514aa, transparent); }
+.cinema-contact-content { position: relative; }
+.cinema-contact h2 { font-size: clamp(48px, 6.7vw, 104px); line-height: 1.05; max-width: 980px; }
+.cinema-contact h2 em { color: #e6d2b8; }
+.cinema-contact-actions { display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 42px; }
+.cinema-contact-actions > p { color: #c0c4b6; font-size: 14px; }
+.cinema-connect { display: flex; align-items: center; gap: 50px; padding: 23px 28px; background: var(--paper); color: var(--ink); font-size: 10px; letter-spacing: .09em; transition: background .3s; }
+.cinema-connect svg { width: 33px; height: 33px; transition: transform .3s; }
+.cinema-connect:hover { background: var(--accent-light); }
+.cinema-connect:hover svg { transform: translate(3px, -3px); }
+.cinema-contact-bottom { border-top: 1px solid var(--border); margin-top: 60px; padding-top: 25px; display: flex; align-items: center; justify-content: space-between; gap: 35px; }
+.cinema-contact-bottom p { font-size: 10px; color: #c0c4b6; line-height: 1.8; }
+.cinema-contact-bottom .cinema-link { font-size: 9px; border-bottom: 0; }
+.cinema-footer { padding-block: 35px; background: #101310; }
+.cinema-footer > div { display: flex; align-items: center; gap: 45px; }
+.cinema-footer-name { font-size: 23px; font-weight: 500; letter-spacing: -.055em; }
+.cinema-footer-name i { color: var(--accent); font-style: normal; }
+.cinema-footer p { font-size: 7px; letter-spacing: .13em; color: #9ea594; }
+.cinema-back-top { display: inline-flex; gap: 15px; align-items: center; margin-left: auto; font-size: 10px; }
+.cinema-footer > div > span { font-size: 8px; color: #9ea594; }
+@media (min-width: 1700px) { .cinema-hero { padding-top: 140px; }.cinema-portrait { min-height: 630px; }.cinema-hero-bottom { padding-block: 28px 40px; } }
+@media (max-width: 1199px) {
+  .cinema-wrap, .shell { width: calc(100% - 80px); }
+  .cinema-about-layout { gap: 60px; }.cinema-expertise-layout { gap: 45px; }
+  .cinema-experience-layout { gap: 65px; }.cinema-details-layout { gap: 65px; }
+  .cinema-philosophy { gap: 18px; }.cinema-philosophy > div { padding: 30px 23px; }
+  .cinema-art-copy em { font-size: 40px; }.cinema-art-copy { left: 33px; right: 33px; }
+  .cinema-education-entry { grid-template-columns: 30px minmax(0, 1fr) 160px; gap: 22px; }
+}
+@media (max-width: 1023px) {
+  .cinema-wrap, .shell { width: calc(100% - 64px); }.cinema-section { padding-block: 90px; }
+  .nav-inner { height: 80px; }.desktop-nav, .nav-linkedin, .cinema-nav-socials { display: none; }.menu-toggle { display: inline-flex; }
+  .cinema-hero { min-height: 760px; padding-top: 112px; }
+  .cinema-hero h1 { font-size: 14vw; }.cinema-portrait { min-height: 480px; }.cinema-hero-intro { max-width: 305px; }.cinema-hero-role { font-size: 16px; }
+  .cinema-hero-study { display: none; }.cinema-hero-bottom > p { font-size: 8px; }
+  .cinema-about { padding-block: 90px; }.cinema-about-layout { gap: 45px; }.cinema-pullquote { font-size: 25px; }
+  .cinema-about-facts { gap: 18px; }.cinema-about-facts > div { display: block; }.cinema-about-facts span { display: block; max-width: none; }
+  .cinema-chapter { margin-bottom: 48px; }.cinema-section-head { gap: 35px; }.cinema-section-head > p { max-width: 210px; font-size: 12px; }
+  .cinema-expertise-layout { gap: 30px; grid-template-columns: 1.25fr .9fr; }.cinema-capability summary { gap: 16px; }.cinema-capability h3 { font-size: 17px; }
+  .cinema-capability-art { height: 540px; padding: 30px; }.cinema-art-copy { left: 30px; right: 25px; }.cinema-art-copy em { font-size: 33px; }.cinema-art-caption { left: 30px; font-size: 6px !important; }
+  .cinema-experience-layout { grid-template-columns: .8fr 1.2fr; gap: 44px; }.cinema-sticky-heading h2 { font-size: 46px; }.cinema-sticky-heading p { font-size: 12px; }.cinema-timeline-entry { padding-left: 26px; }.cinema-job-top { align-items: start; }.cinema-job-top > .cinema-overline { font-size: 7px; }.cinema-current { font-size: 6px; }.cinema-timeline h3 { font-size: 26px; }
+  .cinema-philosophy { grid-template-columns: 1fr; gap: 20px; }.cinema-philosophy > div { padding: 35px; }.cinema-philosophy h3 { margin-top: 20px; }.cinema-philosophy p { font-size: 13px; max-width: 640px; }
+  .cinema-association { grid-template-columns: .8fr 1.3fr 1fr; gap: 20px; }.cinema-association h3 { font-size: 17px; }
+  .cinema-details-layout { gap: 45px; }.cinema-languages h3 { font-size: 26px; }.cinema-education-entry { grid-template-columns: 25px minmax(0, 1fr) 142px; gap: 20px; }
+  .cinema-community-grid > div { padding: 28px; }.cinema-community-grid h3 { font-size: 25px; }
+}
+@media (max-width: 767px) {
+  html { scroll-padding-top: 84px; }.cinema-wrap, .shell { width: calc(100% - 40px); }.cinema-section { padding-block: 72px; }
+  .nav-inner { height: 74px; }.scrolled .nav-inner { height: 66px; }.brand-mark { font-size: 26px; }.brand > span:last-child { font-size: 8px; }
+  .cinema-chapter { gap: 12px; font-size: 7px; margin-bottom: 38px; }.cinema-chapter > p { flex-shrink: 1; }.cinema-chapter > i { margin-left: 5px; min-width: 25px; }
+  .cinema-wrap h2 { font-size: clamp(35px, 9.3vw, 56px); line-height: 1.13; }
+  .cinema-section-head { display: block; margin-bottom: 43px; }.cinema-section-head > p { max-width: 310px; margin-top: 27px; font-size: 13px; }
+  .cinema-overline { font-size: 8px; }.cinema-link { font-size: 9px; }.cinema-tags li { font-size: 8px; }
+  .cinema-hero { min-height: 0; padding-top: 106px; background: radial-gradient(ellipse at 80% 32%, #34372d, #121514 66%); }
+  .cinema-hero-aperture { inset-block-start: 74px; }
+  .cinema-hero-layout { grid-template-columns: 1fr; gap: 0; padding-bottom: 30px; }
+  .cinema-hero-copy { display: contents; }
+  .cinema-hero-copy > .cinema-overline { grid-row: 1; margin-bottom: 19px; color: var(--accent); }
+  .cinema-hero h1 { grid-row: 2; font-size: clamp(80px, 23vw, 156px); width: 100%; line-height: .91; position: relative; z-index: 2; }
+  .cinema-hero-frame-number { font-size: 200px; top: 0; left: -8px; }
+  .cinema-hero-layout { padding-top: 0; }
+  .cinema-hero-prologue { gap: 12px; }.cinema-hero-prologue > span { width: 24px; }
+  .cinema-portrait { grid-row: 3; margin: -30px -9px 0 18px; height: 350px; min-height: 0; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 94%, transparent); }
+  .cinema-portrait img { object-position: 50% 28%; }.cinema-portrait-image { inset: -20px 0; }
+  .cinema-viewfinder { inset: 13px; }.cinema-portrait-side { top: 28px; right: 22px; font-size: 6px; }
+  .cinema-portrait figcaption { left: 27px; right: 27px; bottom: 27px; font-size: 5px; }
+  .cinema-hero-intro { grid-row: 4; margin-top: 18px; max-width: 100%; }.cinema-hero-role { font-size: 20px; }.cinema-hero-company { font-size: 10px; }
+  .cinema-hero-statement { font-size: 13px; max-width: 370px; }.cinema-hero-actions { margin-top: 24px; gap: 20px; }.cinema-hero-intro .cinema-hero-primary { margin-top: 0; padding: 18px 20px; gap: 24px; }.cinema-hero-profile { width: 49px; height: 49px; }
+  .cinema-hero-bottom { padding-block: 20px 25px; gap: 20px; }.cinema-hero-bottom > p { font-size: 8px; text-align: right; max-width: 165px; line-height: 1.8; }.cinema-scroll { font-size: 6px; gap: 12px; }
+  .cinema-about { padding-block: 72px; }.cinema-about-layout { grid-template-columns: 1fr; gap: 42px; }.cinema-about-title h2 { font-size: clamp(42px, 11vw, 69px); }.cinema-signature { margin-top: 32px; }.cinema-about-title .cinema-overline { max-width: none; }
+  .cinema-pullquote { font-size: 25px; }.cinema-biography { margin-top: 27px; }.cinema-biography p { font-size: 13px; line-height: 1.95; }.cinema-about-facts > div { display: flex; gap: 15px; }.cinema-about-facts strong { font-size: 44px; }.cinema-about-facts span { font-size: 8px; max-width: 90px; }
+  .cinema-interlude { min-height: 430px; }.cinema-interlude-content { padding-block: 78px; }.cinema-interlude blockquote { font-size: clamp(33px, 8.9vw, 51px); margin-block: 35px; }.cinema-interlude-credit { max-width: 280px; line-height: 2; font-size: 6px; }.cinema-scene-number { font-size: 140px; }
+  .cinema-expertise-layout { grid-template-columns: 1fr; gap: 40px; }.cinema-capability summary { gap: 17px; padding-block: 23px; }.cinema-capability h3 { font-size: 18px; line-height: 1.4; }.cinema-capability summary > .cinema-overline { width: 17px; }.cinema-capability > p { padding-left: 34px; padding-right: 15px; font-size: 13px; }.cinema-capability-art { position: relative; top: auto; height: 410px; }.cinema-art-copy em { font-size: 42px; }.cinema-art-caption { font-size: 7px !important; }
+  .cinema-experience-layout { grid-template-columns: 1fr; gap: 50px; }.cinema-sticky-heading { position: static; }.cinema-sticky-heading h2 { font-size: clamp(44px, 12vw, 68px); }.cinema-sticky-heading p { max-width: 380px; font-size: 13px; }.cinema-timeline-caption { margin-top: 30px; }.cinema-timeline-entry { padding-left: 25px; }.cinema-timeline h3 { font-size: 26px; }.cinema-job-description { font-size: 13px; }.cinema-timeline-entry article { padding-bottom: 34px; margin-bottom: 32px; }.cinema-job-top > .cinema-overline { font-size: 7px; }.cinema-current { font-size: 6px; }
+  .cinema-fields { padding-block: 34px; }.cinema-fields .cinema-wrap > div { font-size: 25px; line-height: 1.7; }.cinema-fields i { padding-inline: 6px; }
+  .cinema-philosophy { margin-top: 42px; }.cinema-philosophy > div { padding: 28px; }.cinema-philosophy h3 { font-size: 31px; }.cinema-philosophy p { font-size: 13px; }
+  .cinema-education-entry { grid-template-columns: 22px minmax(0, 1fr); gap: 16px; padding-block: 29px; }.cinema-education-entry h3 { font-size: 25px; line-height: 1.35; }.cinema-institution { font-size: 10px; }.cinema-education-period { grid-column: 2; text-align: left; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 9px; padding-top: 0; }.cinema-education-period > p { margin-top: 0; }.cinema-education-description { font-size: 12px; }.cinema-education-entry .cinema-tags { margin-top: 18px; }
+  .cinema-community-grid { grid-template-columns: 1fr; }.cinema-community-grid > div { padding: 29px 25px; }.cinema-community-grid h3 { font-size: 28px; margin-top: 24px; }.cinema-community-role { font-size: 13px; }.cinema-community-period { font-size: 8px; }.cinema-association { grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }.cinema-association h3 { font-size: 22px; }.cinema-association p { text-align: left; font-size: 10px; }
+  .cinema-details-layout { grid-template-columns: 1fr; gap: 50px; }.cinema-language-label { margin-top: 35px; }.cinema-languages h3 { font-size: 29px; }.cinema-languages p { font-size: 9px; }.cinema-skill-groups > div + div { margin-top: 29px; }
+  .cinema-contact { padding-block: 72px 28px; }.cinema-contact h2 { font-size: clamp(38px, 9.8vw, 65px); }.cinema-contact-actions { display: block; margin-top: 32px; }.cinema-contact-actions > p { font-size: 13px; }.cinema-connect { margin-top: 27px; width: fit-content; gap: 35px; padding: 17px 23px; font-size: 9px; }.cinema-connect svg { width: 27px; }.cinema-contact-bottom { margin-top: 40px; align-items: start; gap: 18px; }.cinema-contact-bottom p { max-width: 175px; font-size: 9px; }.cinema-contact-bottom .cinema-link { padding-top: 0; font-size: 7px; gap: 12px; }.cinema-contact-bottom svg { width: 15px; }
+  .cinema-footer > div { display: grid; grid-template-columns: 1fr auto; gap: 22px; }.cinema-footer-name { font-size: 25px; }.cinema-footer p { grid-row: 2; font-size: 6px; line-height: 1.8; }.cinema-back-top { grid-row: 1; grid-column: 2; font-size: 8px; }.cinema-footer > div > span { text-align: right; font-size: 7px; }
+  .cinema-contact-bottom { flex-wrap: wrap; }.cinema-contact-bottom .cinema-social-links { gap: 19px; }
+  .cinema-footer .cinema-social-links { grid-row: 3; grid-column: 1 / -1; }
+  .cinema-footer > div > span { grid-row: 2; grid-column: 2; }
+}
+@media (max-width: 359px) { .cinema-hero h1 { font-size: 24vw; }.cinema-portrait { height: 290px; margin-left: 30px; }.cinema-chapter { font-size: 6px; }.cinema-about-facts > div { gap: 12px; }.cinema-about-facts strong { font-size: 39px; }.cinema-capability h3 { font-size: 16px; }.cinema-contact h2 { font-size: 36px; }.cinema-job-top { gap: 8px; }.cinema-current { font-size: 5px; } }
+@media (hover: none) { .cinema-capability summary:hover h3 { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; }
+  .cinema-name-mask > span, .cinema-portrait-image, .cinema-scene picture { transform: none !important; }
+  .cinema-portrait { clip-path: none !important; }.cinema-sticky-heading, .cinema-capability-art { position: relative; top: auto; }
+}
+
+/* Shared cinematic motion keeps each chapter in the normal document flow. */
+.cinema-line-mask { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.cinema-line-mask > span { display: block; transform-origin: bottom left; }
+.cinema-quote-mask { display: inline-block; overflow: hidden; padding: 0 .08em .14em; margin: 0 .13em -.14em 0; vertical-align: bottom; }
+.cinema-quote-mask > span { display: inline-block; }
+.cinema-chapter > i { transform-origin: left; }
+.cinema-portrait-sweep { position: absolute; left: -35%; top: -10%; height: 120%; width: 55%; background: linear-gradient(90deg, transparent, #f0dcc590, transparent); mix-blend-mode: screen; pointer-events: none; }
+.cinema-scroll > svg { animation: cinema-scroll-cue 2.6s ease-in-out infinite; }
+.cinema-hero[data-active='false'] .cinema-scroll > svg { animation-play-state: paused; }
+.cinema-timeline-fill { position: absolute; top: 0; left: -1px; width: 1px; height: 100%; background: var(--accent); transform-origin: top; pointer-events: none; }
+.cinema-timeline-entry::before { transition: background .6s, box-shadow .6s; }
+.cinema-timeline-entry[data-revealed='true']::before { background: var(--accent); box-shadow: 0 0 0 4px #cda87913; }
+.cinema-capability-button { display: flex; align-items: center; gap: 24px; width: 100%; padding: 24px 0; border: 0; background: transparent; text-align: left; font: inherit; }
+.cinema-capability-button > .cinema-overline { color: var(--accent); width: 22px; flex-shrink: 0; }
+.cinema-capability-name { transition: color .3s, transform .4s; }
+.cinema-capability-button:hover .cinema-capability-name { color: var(--accent-light); transform: translateX(5px); }
+.cinema-capability-toggle svg { animation: cinema-icon-enter .25s ease-out both; }
+.cinema-disclosure { overflow: hidden; }
+.cinema-disclosure > p { font-size: 13px; line-height: 1.9; color: var(--text-secondary); padding: 0 35px 25px 46px; }
+.cinema-social-links svg { transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.cinema-social-links a:hover svg, .cinema-social-links a:focus-visible svg { transform: translateY(-3px) rotate(-5deg); }
+.cinema-philosophy article { transition: transform .45s cubic-bezier(.22,1,.36,1); }
+.cinema-philosophy article:hover { transform: translateY(-4px); }
+.cinema-community-grid h3 { transition: color .4s; }
+.cinema-community-grid article:hover h3 { color: var(--accent-light); }
+.cinema-education-entry { position: relative; }
+.cinema-education-entry::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: #977245; transform: scaleX(0); transform-origin: left; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.cinema-education-entry:hover::after { transform: scaleX(1); }
+@keyframes cinema-scroll-cue { 0%,100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
+@keyframes cinema-icon-enter { from { opacity: 0; transform: rotate(-45deg); } to { opacity: 1; transform: rotate(0); } }
+@media (max-width:1023px) { .cinema-capability-button { gap: 16px; } }
+@media (max-width:767px) {
+  .cinema-capability-button { gap: 17px; padding-block: 23px; }
+  .cinema-capability-button > .cinema-overline { width: 17px; }
+  .cinema-disclosure > p { padding-left: 34px; padding-right: 15px; }
+  .cinema-scroll > svg { animation: none; }
+}
+@media (hover:none) { .cinema-capability-button:hover .cinema-capability-name, .cinema-philosophy article:hover { transform: none; } }
+@media (prefers-reduced-motion:reduce) {
+  .cinema-line-mask > span, .cinema-quote-mask > span, .cinema-reveal-content { transform: none !important; opacity: 1 !important; }
+  .cinema-portrait img, .cinema-link, .cinema-connect { transform: none !important; }
+  .cinema-portrait-sweep, .cinema-hero-aperture { display: none; }
+  .cinema-capability-button:hover .cinema-capability-name, .cinema-social-links a:hover svg, .cinema-social-links a:focus-visible svg, .cinema-philosophy article:hover { transform: none; }
+  .cinema-education-entry::after { display: none; }
+}

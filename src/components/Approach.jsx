@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion as Motion, useInView } from 'framer-motion'
 import { ArrowDownRight } from 'lucide-react'
-import { philosophy } from '../data/portfolioData'
+import { philosophy, profile } from '../data/portfolioData'
 import { useReducedMotion } from '../motion/hooks'
 import { ease } from '../motion/settings'
 import SectionLabel from './SectionLabel'
@@ -24,10 +24,10 @@ export default function Approach() {
   const reduced = useReducedMotion()
   return <section ref={ref} id="approach" tabIndex={-1} className="approach-section section" aria-labelledby="approach-heading">
     <Motion.div className="approach-wipe" aria-hidden="true" initial={false} animate={{ scaleY: visible || reduced ? 1 : 0 }} transition={{ duration: reduced ? 0 : .8, ease }} />
-    <Motion.div className="shell approach-content" initial={reduced ? false : { clipPath: 'inset(100% 0 0 0)' }} animate={{ clipPath: visible || reduced ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)' }} transition={{ duration: reduced ? 0 : .85, ease }}><div className="approach-topline"><SectionLabel number="05">MY APPROACH</SectionLabel><span className="micro-label">A PEOPLE-FIRST PHILOSOPHY</span></div>
-      <div className="section-intro"><MaskedHeading id="approach-heading" delay={.12} lines={['Strategy matters.', 'People make it work.']} /><p className="section-aside">I believe good business starts with understanding people: what they need, what they value and where we can move forward together.</p></div>
+    <Motion.div className="shell approach-content" initial={reduced ? false : { clipPath: 'inset(100% 0 0 0)' }} animate={{ clipPath: visible || reduced ? 'inset(0 0 0 0)' : 'inset(100% 0 0 0)' }} transition={{ duration: reduced ? 0 : .85, ease }}><div className="approach-topline"><SectionLabel number="05">MY APPROACH</SectionLabel><span className="micro-label">{profile.copy.approachLabel}</span></div>
+      <div className="section-intro"><MaskedHeading id="approach-heading" delay={.12} lines={profile.copy.approachHeading} /><p className="section-aside">{profile.copy.approachIntro}</p></div>
       <div className="approach-chapters">{philosophy.map((item, index) => <Chapter key={item.title} item={item} index={index} />)}</div>
-      <div className="approach-footer"><span>THREE PRINCIPLES. ONE CONNECTED APPROACH.</span><a href="#contact">Start a conversation<ArrowDownRight size={19} aria-hidden="true" /></a></div>
+      <div className="approach-footer"><span>{profile.copy.approachFooter}</span><a href="#contact">Start a conversation<ArrowDownRight size={19} aria-hidden="true" /></a></div>
     </Motion.div>
   </section>
 }

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import '@fontsource-variable/sora'
 import '@fontsource-variable/manrope'
-import './index.css'
+import './cinema.css'
 import { cinematicAsset } from './cinematicAssets'
 import { profile } from './data/portfolioData'
 

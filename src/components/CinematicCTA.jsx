@@ -24,7 +24,7 @@ export default function CinematicCTA() {
   return <section id="contact" tabIndex={-1} aria-labelledby="contact-heading" className="contact-section section" onPointerMove={move} onPointerEnter={() => setInside(true)} onPointerLeave={() => setInside(false)}>
     <ParallaxImage scene={scenes.cta} /><div className="contact-shade" aria-hidden="true" /><div className="contact-orbit" aria-hidden="true" />
     <Motion.div className="contact-cursor-glow" aria-hidden="true" style={{ x, y }} animate={{ opacity: enabled && inside ? 1 : 0 }} transition={{ duration: .35 }} />
-    <div className="shell contact-content"><SectionLabel number="07">MY NEXT CHAPTER</SectionLabel><div className="contact-layout"><div><MaskedHeading id="contact-heading" lines={['Good opportunities', 'start with a', { text: 'conversation.', muted: true }]} /><p className="contact-intro">I’m always interested in new perspectives and shared ambitions.<br />Let’s start a conversation.</p></div>
+    <div className="shell contact-content"><SectionLabel number="07">MY NEXT CHAPTER</SectionLabel><div className="contact-layout"><div><MaskedHeading id="contact-heading" lines={['Good opportunities', 'start with a', { text: 'conversation.', muted: true }]} /><p className="contact-intro">{profile.copy.contactIntro}<br />Let’s start a conversation.</p></div>
       <Motion.a className="contact-circle" href={profile.linkedin} target="_blank" rel="noopener noreferrer" {...pointer.handlers} style={button}><ArrowUpRight size={52} strokeWidth={1} aria-hidden="true" /><span>Let’s connect</span></Motion.a></div>
       <div className="contact-bottom"><p>{profile.location}</p><TextLink href={profile.linkedin} external>Find me on LinkedIn</TextLink></div>
     </div>

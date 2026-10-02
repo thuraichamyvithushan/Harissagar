@@ -31,14 +31,14 @@ export default function CinematicHero() {
     <div className="shell hero-content">
       <Motion.div className="hero-scene-label" {...enter(.08)}><span>01 / MY INTRODUCTION</span><span>{profile.address.addressLocality.toUpperCase()} / {profile.address.addressCountry}</span></Motion.div>
       <div className="hero-copy">
-        <Motion.p className="eyebrow hero-eyebrow" {...enter(.15)}><span />SALES / MARKETING / STRATEGY</Motion.p>
+        <Motion.p className="eyebrow hero-eyebrow" {...enter(.15)}><span />{profile.eyebrow}</Motion.p>
         <h1 id="hero-title" aria-label={profile.name}>{profile.name.split(' ').map((word, i) => <span className="hero-word" key={word}><Motion.span className={i ? 'outline-text' : ''}
           initial={reduced ? false : { y: '115%', filter: 'blur(4px)' }} animate={{ y: 0, filter: 'blur(0px)' }} transition={{ duration: reduced ? 0 : 1.2, delay: reduced ? 0 : .2 + i * .12, ease }}>{word}</Motion.span></span>)}</h1>
         <Motion.p className="hero-role" {...enter(.6)}>I’m a {profile.role}</Motion.p>
-        <Motion.p className="hero-statement" {...enter(.72)}>{profile.heroStatement}</Motion.p>
+        <Motion.p className="hero-statement" {...enter(.72)}>{profile.intro}</Motion.p>
         <Motion.div className="hero-links" {...enter(.85)}><TextLink href="#experience">Explore my experience</TextLink><TextLink href={profile.linkedin} external>LinkedIn</TextLink></Motion.div>
       </div>
-      <Motion.div className="hero-footer" {...enter(1)}><p><span className="status-dot" />I’M BASED IN {profile.location.toUpperCase()}</p><a className="scroll-cue" href="#about" aria-label="Scroll to explore my story"><span>SCROLL TO EXPLORE</span><span className="scroll-cue-line" /><ArrowDown size={16} aria-hidden="true" /></a><span className="hero-credit">A COMMERCIAL MIND.<br />A HUMAN PERSPECTIVE.</span></Motion.div>
+      <Motion.div className="hero-footer" {...enter(1)}><p><span className="status-dot" />I’M BASED IN {profile.location.toUpperCase()}</p><a className="scroll-cue" href="#about" aria-label="Scroll to explore my story"><span>SCROLL TO EXPLORE</span><span className="scroll-cue-line" /><ArrowDown size={16} aria-hidden="true" /></a><span className="hero-credit">{profile.copy.heroCredit[0]}<br />{profile.copy.heroCredit[1]}</span></Motion.div>
     </div>
   </section>
 }

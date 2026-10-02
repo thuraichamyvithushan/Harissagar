@@ -26,6 +26,6 @@ export default function Experience() {
   const progress = useTransform(scrollYProgress, [0, 1], [0, 1])
   return <section id="experience" tabIndex={-1} aria-labelledby="experience-heading" className="section shell">
     <div className="section-intro"><div><SectionLabel number="03">EXPERIENCE</SectionLabel><Reveal><h2 id="experience-heading">Across markets,<br/><span className="muted">brands and people.</span></h2></Reveal></div><TextLink href={profile.linkedin} external>View my full profile</TextLink></div>
-    <div className="timeline" ref={timeline}><div className="timeline-track" aria-hidden="true"><Motion.div style={{ scaleY: reduced ? 1 : progress }}/></div>{profile.experience.map((item,index) => <TimelineEntry key={item.company} item={item} index={index}/>)}</div>
+    <div className="timeline" ref={timeline}><div className="timeline-track" aria-hidden="true"><Motion.div style={{ scaleY: reduced ? 1 : progress }}/></div>{profile.experience.map((item,index) => <TimelineEntry key={`${item.company}-${item.role}-${item.startDate}`} item={item} index={index}/>)}</div>
   </section>
 }
